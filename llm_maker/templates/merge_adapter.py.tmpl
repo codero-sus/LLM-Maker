@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+"""Merge a trained LoRA adapter into its base model for serving.
+
+    python merge_adapter.py --adapter runs/my-llm --out merged/my-llm
+
+A QLoRA adapter is merged into the *unquantised* base weights, so the result is
+an ordinary bf16 checkpoint that vLLM, TGI, llama.cpp and transformers can all
+load.  Nothing here is LLM-Maker specific; it is the standard PEFT workflow.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+import torch
+from peft import PeftModel
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+
+def base_model_id(adapter_dir: str) -> str | None:
+    config_path = Path(adapter_dir) / "adapter_config.json"
+    if config_path.exists():
+        return json.loads(config_path.read_text(encoding="utf-8")).get("base_model_name_or_path")
+    return None
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument("--adapter", required=True, help="directory saved by train.py")
+    parser.add_argument("--base", default=None, help="base model id (default: read from the adapter)")
+    parser.add_argument("--out", required=True, help="where to write the merged model")
+    parser.add_argument("--dtype", default="bfloat16", choices=["bfloat16", "float16", "float32"])
+    parser.add_argument("--push-to-hub", default=None, help="optional repo id to upload to")
+    args = parser.parse_args()
+
+    dtype = getattr(torch, args.dtype)
+    base_id = args.base or base_model_id(args.adapter)
+    if not base_id:
+        raise SystemExit("Could not read the base model from the adapter; pass --base explicitly.")
+
+    print(f"loading {base_id} in {args.dtype} (this needs enough RAM/VRAM for the full model)")
+    base = AutoModelForCausalLM.from_pretrained(base_id, torch_dtype=dtype, device_map="cpu")
+    model = PeftModel.from_pretrained(base, args.adapter)
+    merged = model.merge_and_unload()
+
+    Path(args.out).mkdir(parents=True, exist_ok=True)
+    merged.save_pretrained(args.out, safe_serialization=True)
+    AutoTokenizer.from_pretrained(args.adapter, use_fast=True).save_pretrained(args.out)
+    print(f"merged model written to {args.out}")
+
+    if args.push_to_hub:
+        merged.push_to_hub(args.push_to_hub)
+        print(f"pushed to https://huggingface.co/{args.push_to_hub}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
