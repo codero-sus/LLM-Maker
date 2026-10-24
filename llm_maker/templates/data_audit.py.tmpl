@@ -1,0 +1,137 @@
+#!/usr/bin/env python3
+"""Inspect the datasets in config.yaml without spending GPU time.
+
+For every dataset in the plan this prints the split sizes, the real column
+names, two raw rows, how each row is rendered for training, and an estimated
+token count from a sample.  It is the cheapest way to catch a wrong column
+name, a missing chat template or a gated repository.
+
+    python data_audit.py --config config.yaml --samples 2
+"""
+
+from __future__ import annotations
+
+import argparse
+import os
+
+from datasets import DatasetDict
+
+import train as train_module
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument("--config", default="config.yaml")
+    parser.add_argument("--samples", type=int, default=2, help="raw rows to print per dataset")
+    parser.add_argument("--rows", type=int, default=1000, help="rows sampled for the token estimate")
+    return parser.parse_args()
+
+
+def count_tokens(dataset, fields, cfg, tokenizer, goal, rows: int) -> tuple[float, int]:
+    """Mean tokens per row over a sample."""
+    sample = dataset.select(range(min(rows, len(dataset))))
+    seq_len = int(cfg["hyperparameters"].get("seq_len", 2048))
+    total, counted = 0, 0
+    for row in sample:
+        try:
+            if goal == "dpo":
+                out = train_module.tokenise_dpo(row, fields, tokenizer, seq_len * 4)
+                total += len(out["prompt_ids"]) + len(out["chosen_ids"]) + len(out["rejected_ids"])
+            else:
+                mapping = train_module.make_sft_tokeniser(cfg, fields, tokenizer, seq_len * 4)
+                total += len(mapping(row)["input_ids"])
+            counted += 1
+        except Exception:  # noqa: BLE001 -- a single bad row should not stop the audit
+            continue
+    return (total / counted if counted else 0.0), counted
+
+
+def main() -> int:
+    args = parse_args()
+    cfg = train_module.load_config(args.config)
+    tokenizer = train_module.load_tokenizer(cfg)
+    goal = cfg["goal"]
+    token = os.environ.get("HF_TOKEN")
+    seq_len = int(cfg["hyperparameters"].get("seq_len", 2048))
+
+    print(f"tokenizer : {cfg['model'].get('tokenizer') or cfg['model']['base_model']}")
+    print(f"chat tpl  : {'yes' if tokenizer.chat_template else 'NO -- falling back to plain text'}")
+    print(f"goal      : {goal}  (seq_len={seq_len})")
+
+    grand_total = 0
+    for entry in cfg["datasets"]:
+        print("=" * 78)
+        print(f"{entry['repo_id']}   split={entry.get('split')}   config={entry.get('config')}")
+        try:
+            dataset = train_module.load_dataset_entry(entry, token)
+        except Exception as exc:  # noqa: BLE001
+            print(f"  FAILED to load: {type(exc).__name__}: {exc}")
+            print("  If this dataset is gated, accept its terms on the Hub and export HF_TOKEN=...")
+            continue
+
+        if isinstance(dataset, DatasetDict):
+            for name, part in dataset.items():
+                print(f"  {name}: {len(part):,} rows")
+            dataset = dataset["train"] if "train" in dataset else dataset[list(dataset.keys())[0]]
+        else:
+            print(f"  {len(dataset):,} rows")
+        print(f"  columns: {list(dataset.features)}")
+
+        fields = train_module.detect_fields(dataset[0], entry, goal)
+        print(f"  detected fields: { {k: v for k, v in fields.items() if v} }")
+        missing = [
+            key
+            for key, value in fields.items()
+            if value is None and key in (("chosen", "rejected") if goal == "dpo" else ("text", "completion", "messages"))
+        ]
+        if missing:
+            print(f"  WARNING: nothing matched for {missing}; set datasets[].fields in config.yaml")
+
+        count = min(args.samples, len(dataset))
+        sample = dataset[:count]
+        for index in range(count):
+            row = {key: values[index] for key, values in sample.items()}
+            print(f"\n  --- raw row {index} ---")
+            for key, value in row.items():
+                preview = repr(value)
+                print(f"    {key}: {preview[:200]}{'...' if len(preview) > 200 else ''}")
+            print(f"  --- rendered for {goal} ---")
+            try:
+                if goal == "dpo":
+                    out = train_module.tokenise_dpo(row, fields, tokenizer, seq_len)
+                    print(
+                        f"    prompt: {len(out['prompt_ids'])} tok, "
+                        f"chosen: {len(out['chosen_ids'])} tok, rejected: {len(out['rejected_ids'])} tok"
+                    )
+                    print(f"    chosen:   {tokenizer.decode(out['chosen_ids'])[:180]!r}")
+                    print(f"    rejected: {tokenizer.decode(out['rejected_ids'])[:180]!r}")
+                else:
+                    mapping = train_module.make_sft_tokeniser(cfg, fields, tokenizer, seq_len)
+                    out = mapping(row)
+                    supervised = sum(1 for token in out["labels"] if token != -100)
+                    print(f"    {len(out['input_ids'])} tokens, {supervised} supervised")
+                    print(f"    {tokenizer.decode(out['input_ids'])[:280]!r}")
+            except Exception as exc:  # noqa: BLE001
+                print(f"    could not render: {type(exc).__name__}: {exc}")
+
+        mean, counted = count_tokens(dataset, fields, cfg, tokenizer, goal, args.rows)
+        if counted:
+            estimate = int(mean * len(dataset))
+            grand_total += estimate
+            print(
+                f"\n  {mean:,.0f} tokens/row over {counted:,} sampled rows "
+                f"-> about {estimate / 1e9:.3f}B tokens in {len(dataset):,} rows"
+            )
+
+    print("=" * 78)
+    print(f"total across the mixture: about {grand_total / 1e9:.2f}B tokens")
+    print(f"planned epochs: {cfg['hyperparameters'].get('epochs')}, "
+          f"seq_len: {seq_len}, micro batch: {cfg['hyperparameters'].get('micro_batch_size')}")
+    print("next: python train.py --dry-run")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-maker"
+version = "0.1.0"
+description = "Plan a language model training run on Hugging Face datasets, then generate a runnable project."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "LLM Maker contributors" }]
+keywords = ["llm", "fine-tuning", "datasets", "huggingface", "transformers", "training", "lora", "dpo"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# The app itself needs only these. The *generated* projects need torch,
+# transformers, datasets, peft and accelerate -- see a generated requirements.txt.
+dependencies = [
+  "httpx>=0.24",
+  "fastapi>=0.104",
+  "uvicorn>=0.24",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "transformers>=4.44", "datasets>=2.19", "tokenizers>=0.15", "jinja2>=3.1"]
+
+[project.urls]
+Homepage = "https://github.com/codero-sus/LLM-Maker"
+Issues = "https://github.com/codero-sus/LLM-Maker/issues"
+
+[project.scripts]
+llm-maker = "llm_maker.cli:console_entry"
+
+[tool.setuptools]
+packages = ["llm_maker", "llm_maker.data", "llm_maker.templates", "llm_maker.web"]
+
+[tool.setuptools.package-data]
+llm_maker = ["data/*.json", "templates/*.tmpl", "web/*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
