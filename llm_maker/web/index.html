@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LLM Maker — plan a language model on Hugging Face datasets</title>
+<link rel="icon" href="/favicon.svg" />
+<style>
+  :root {
+    --bg: #0b1020; --bg-2: #111834; --card: #151d3b; --card-2: #1b2450;
+    --line: #26305c; --text: #e8ecff; --muted: #93a0c8; --accent: #ffd166;
+    --accent-2: #7cd4fd; --good: #4ade80; --warn: #fbbf24; --bad: #fb7185;
+    --chip: #1d2752;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: radial-gradient(1200px 600px at 15% -10%, #1c2a5e 0%, var(--bg) 55%) no-repeat, var(--bg);
+    color: var(--text); font: 15px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+  }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code, pre, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  header {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    padding: 18px 24px; border-bottom: 1px solid var(--line);
+    background: rgba(11,16,32,.75); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 20;
+  }
+  .brand { font-weight: 700; font-size: 19px; letter-spacing: .2px; }
+  .brand span { color: var(--accent); }
+  .brand small { display: block; font-weight: 400; font-size: 12px; color: var(--muted); letter-spacing: 0; }
+  .grow { flex: 1 1 auto; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--chip); font-size: 12.5px; color: var(--muted);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+  .dot.ok { background: var(--good); box-shadow: 0 0 8px var(--good); }
+  .dot.off { background: var(--warn); }
+  main { display: grid; grid-template-columns: minmax(0,1fr) 430px; gap: 22px; padding: 22px 24px 60px; max-width: 1680px; margin: 0 auto; }
+  @media (max-width: 1100px) { main { grid-template-columns: minmax(0,1fr); } }
+  .panel { background: linear-gradient(180deg, var(--card) 0%, var(--bg-2) 100%); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+  .panel + .panel { margin-top: 18px; }
+  h2 { margin: 0 0 4px; font-size: 16px; }
+  h3 { margin: 18px 0 8px; font-size: 13.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  .sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  input, select, textarea, button { font: inherit; color: var(--text); }
+  input[type=text], input[type=number], select {
+    background: #0d1330; border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; outline: none;
+  }
+  input[type=text]:focus, select:focus, input[type=number]:focus { border-color: var(--accent-2); }
+  button {
+    background: var(--card-2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; cursor: pointer;
+    transition: .15s;
+  }
+  button:hover { border-color: var(--accent-2); transform: translateY(-1px); }
+  button.primary { background: linear-gradient(135deg, #ffd166, #ffb020); color: #23180a; font-weight: 650; border: none; }
+  button.ghost { background: transparent; }
+  button:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip {
+    border: 1px solid var(--line); background: var(--chip); border-radius: 999px; padding: 5px 11px;
+    font-size: 12.5px; cursor: pointer; color: var(--muted); user-select: none;
+  }
+  .chip:hover { border-color: var(--accent-2); color: var(--text); }
+  .chip.on { background: var(--accent-2); color: #06202e; border-color: var(--accent-2); font-weight: 600; }
+  .chip .n { opacity: .65; font-size: 11px; margin-left: 4px; }
+  .cards { display: grid; gap: 12px; }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; background: #101737; }
+  .card:hover { border-color: #3a4780; }
+  .card.sel { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(255,209,102,.35) inset; }
+  .card .top { display: flex; gap: 10px; align-items: baseline; justify-content: space-between; }
+  .card .name { font-weight: 600; font-size: 14.5px; word-break: break-all; }
+  .card .desc { color: var(--muted); font-size: 13px; margin: 6px 0 9px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; font-size: 11.5px; color: var(--muted); }
+  .tag { background: #0e1533; border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px; }
+  .tag.warn { border-color: #6b4d10; color: var(--warn); }
+  .tag.good { border-color: #1c5c39; color: var(--good); }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+  .stat { border: 1px solid var(--line); border-radius: 12px; padding: 11px 13px; background: #0f1633; }
+  .stat b { display: block; font-size: 20px; font-weight: 680; letter-spacing: -.4px; }
+  .stat small { color: var(--muted); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; }
+  .warn-list { margin: 0; padding-left: 18px; color: #ffd9a0; font-size: 13px; }
+  .warn-list li { margin-bottom: 5px; }
+  .sel-row { display: grid; grid-template-columns: minmax(0,1fr) 92px 28px; gap: 8px; align-items: center; padding: 7px 0; border-bottom: 1px dashed var(--line); }
+  .sel-row:last-child { border-bottom: none; }
+  .sel-row .rid { font-size: 12.5px; word-break: break-all; }
+  .sel-row input[type=range] { width: 100%; accent-color: var(--accent); }
+  .x { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 16px; padding: 2px 6px; }
+  .x:hover { color: var(--bad); }
+  pre { background: #070b1c; border: 1px solid var(--line); border-radius: 10px; padding: 12px; overflow: auto; font-size: 12.5px; max-height: 340px; }
+  .files { display: flex; flex-wrap: wrap; gap: 6px; }
+  .file { font-size: 12px; border: 1px solid var(--line); border-radius: 7px; padding: 3px 8px; background: #0e1533; cursor: pointer; }
+  .file:hover { border-color: var(--accent-2); }
+  .modal { position: fixed; inset: 0; background: rgba(4,7,18,.72); display: none; align-items: center; justify-content: center; padding: 24px; z-index: 50; }
+  .modal.on { display: flex; }
+  .modal .body { background: var(--card); border: 1px solid var(--line); border-radius: 14px; max-width: 900px; width: 100%; max-height: 86vh; overflow: auto; padding: 20px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 7px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; }
+  .hint { color: var(--muted); font-size: 12px; }
+  .toggle { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); }
+  .spinner { display: inline-block; width: 13px; height: 13px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  footer { color: var(--muted); font-size: 12px; padding: 0 24px 40px; max-width: 1680px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">LLM<span>&nbsp;Maker</span>
+    <small>A planner for language models — not a trainer</small>
+  </div>
+  <div class="grow"></div>
+  <span class="pill" id="hub-pill"><span class="dot" id="hub-dot"></span><span id="hub-text">checking the Hub…</span></span>
+  <span class="pill" id="cat-pill">catalog: —</span>
+  <a class="pill" href="/docs" target="_blank">API docs</a>
+</header>
+
+<main>
+  <!-- ================================================== left column -->
+  <section>
+    <div class="panel">
+      <h2>1 &nbsp;Find datasets on the Hugging Face Hub</h2>
+      <p class="sub">Search is passed straight to <code>huggingface.co/api/datasets</code>. When the Hub is
+        unreachable, results come from the bundled snapshot and your local cache — every response says which.</p>
+      <div class="row">
+        <input type="text" id="q" placeholder="e.g. code instructions, hindi pretraining, dpo pairs…" style="flex:1 1 320px" />
+        <select id="sort">
+          <option value="downloads">Most downloads</option>
+          <option value="likes">Most likes</option>
+          <option value="lastModified">Recently updated</option>
+        </select>
+        <button class="primary" id="search-btn">Search</button>
+      </div>
+
+      <h3>Task</h3><div class="chips" id="f-tasks"></div>
+      <h3>Size</h3><div class="chips" id="f-sizes"></div>
+      <h3>Language</h3><div class="chips" id="f-langs"></div>
+      <div class="row" style="margin-top:12px">
+        <label class="toggle"><input type="checkbox" id="gated" checked /> include gated</label>
+        <button class="ghost" id="clear-btn">clear filters</button>
+        <span class="hint" id="mode-note"></span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="row" style="justify-content:space-between">
+        <h2 style="margin:0">Results <span class="hint" id="result-count"></span></h2>
+        <span class="hint" id="result-mode"></span>
+      </div>
+      <div class="cards" id="results" style="margin-top:14px"></div>
+      <div class="row" style="margin-top:14px; justify-content:center">
+        <button id="more-btn" style="display:none">Load more</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================= right column -->
+  <aside>
+    <div class="panel">
+      <h2>2 &nbsp;Your plan</h2>
+      <p class="sub">Pick a goal and the hardware you actually have.</p>
+      <div class="row">
+        <select id="goal" style="flex:1 1 190px"></select>
+        <select id="method" style="flex:1 1 150px">
+          <option value="">auto method</option>
+          <option value="lora">LoRA</option>
+          <option value="qlora">QLoRA</option>
+          <option value="full">full fine-tune</option>
+          <option value="from-scratch">from scratch</option>
+        </select>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <select id="trainer" title="Generated training runtime" style="flex:1 1 230px">
+          <option value="optimized">optimized Trainer (recommended)</option>
+          <option value="standard">standard Hugging Face Trainer</option>
+        </select>
+        <label class="toggle" title="Single-GPU full/LoRA SFT or CPT only; unsupported combinations safely use eager mode">
+          <input type="checkbox" id="torch-compile" /> torch.compile
+        </label>
+      </div>
+      <p class="hint" id="goal-blurb" style="margin-top:8px"></p>
+      <div class="row" style="margin-top:6px">
+        <select id="preset" style="flex:1 1 200px"></select>
+        <select id="gpu" style="flex:1 1 170px"></select>
+        <input type="number" id="gpus" value="1" min="1" max="512" style="width:78px" title="number of GPUs" />
+      </div>
+      <div class="row" style="margin-top:10px">
+        <input type="text" id="project" value="my-llm" style="flex:1 1 160px" />
+        <input type="number" id="epochs" value="3" min="0.1" step="0.5" style="width:88px" title="epochs" />
+        <input type="number" id="seqlen" value="2048" min="128" step="128" style="width:100px" title="sequence length" />
+      </div>
+      <p class="hint" style="margin:6px 0 0">project name · epochs · sequence length</p>
+    </div>
+
+    <div class="panel">
+      <h2>3 &nbsp;Dataset mixture</h2>
+      <div id="selected-empty" class="sub">Nothing selected yet — add datasets from the results on the left.</div>
+      <div id="selected"></div>
+    </div>
+
+    <div class="panel">
+      <h2>4 &nbsp;Estimate &amp; generate</h2>
+      <div class="row">
+        <button class="primary" id="plan-btn" style="flex:1 1 140px">Plan it</button>
+        <button id="gen-btn" style="flex:1 1 160px" disabled>Generate project</button>
+      </div>
+      <div id="plan-out" style="margin-top:14px"></div>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  Dataset metadata comes from the public Hugging Face Hub API. Popularity figures in offline mode are
+  approximate and only ever influence ranking. LLM Maker generates training code — it does not train
+  anything itself, and it does not upload your data anywhere.
+</footer>
+
+<div class="modal" id="modal"><div class="body"><div id="modal-content"></div></div></div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const state = {
+  dirty: new Set(),           // numeric fields the user edited by hand
+  tasks: new Set(), langs: new Set(), sizes: new Set(),
+  selected: new Map(),        // repo_id -> {weight, ref}
+  cursor: null, mode: null, query: "", plan: null, slug: null,
+  presets: null, details: new Map(),
+};
+
+const fmt = (n) => n === null || n === undefined ? "—" :
+  n >= 1e6 ? (n / 1e6).toFixed(1) + "M" : n >= 1e3 ? (n / 1e3).toFixed(1) + "k" : String(n);
+const fmtB = (n) => n === null || n === undefined ? "unknown" : n >= 1e12 ? (n/1e12).toFixed(1)+"T"
+  : n >= 1e9 ? (n/1e9).toFixed(2)+"B" : n >= 1e6 ? (n/1e6).toFixed(1)+"M" : String(n);
+
+async function api(path, options) {
+  const res = await fetch(path, options);
+  if (!res.ok) {
+    let detail = res.statusText;
+    try { detail = (await res.json()).detail || detail; } catch (e) {}
+    throw new Error(detail);
+  }
+  return res.json();
+}
+
+// ---------------------------------------------------------------- bootstrap
+async function boot() {
+  const health = await api("/api/health");
+  const online = health.hub && health.hub.online;
+  $("hub-dot").className = "dot " + (online ? "ok" : "off");
+  $("hub-text").textContent = online
+    ? "live Hub · " + (health.hub.endpoint || "")
+    : "offline · using bundled snapshot";
+  $("cat-pill").textContent = "catalog: " + health.catalog.local_entries + " datasets";
+
+  state.presets = await api("/api/presets");
+  const goal = $("goal");
+  state.presets.goals.forEach((g) => {
+    const opt = document.createElement("option");
+    opt.value = g.value; opt.textContent = g.label;
+    goal.appendChild(opt);
+  });
+  goal.value = "sft";
+  goal.onchange = () => {
+    $("goal-blurb").textContent = blurb();
+    const preset = state.presets.goals.find((g) => g.value === goal.value);
+    if (preset) { $("epochs").value = preset.epochs; $("seqlen").value = preset.seq_len; }
+    state.dirty.clear();
+  };
+  $("goal-blurb").textContent = blurb();
+  const preset = $("preset");
+  state.presets.models.forEach((m) => {
+    const opt = document.createElement("option");
+    opt.value = m.value; opt.textContent = m.label;
+    preset.appendChild(opt);
+  });
+  preset.value = "7b";
+  const gpu = $("gpu");
+  state.presets.gpus.forEach((g) => {
+    const opt = document.createElement("option");
+    opt.value = g.value; opt.textContent = g.label;
+    gpu.appendChild(opt);
+  });
+  gpu.value = "a100-80gb";
+  const syncTrainerOptions = () => {
+    const enabled = $("trainer").value === "optimized";
+    $("torch-compile").disabled = !enabled;
+    if (!enabled) $("torch-compile").checked = false;
+  };
+  $("trainer").onchange = syncTrainerOptions;
+  syncTrainerOptions();
+
+  const cat = await api("/api/catalog");
+  renderFacets(cat.facets);
+  search();
+  setInterval(refreshHub, 60000);
+}
+
+function blurb() {
+  const g = state.presets?.goals.find((x) => x.value === $("goal").value);
+  return g ? g.blurb + "  Needs: " + g.need_columns + "." : "";
+}
+
+async function refreshHub() {
+  try {
+    const cat = await api("/api/catalog");
+    const online = cat.hub.online;
+    $("hub-dot").className = "dot " + (online ? "ok" : "off");
+  } catch (e) {}
+}
+
+// ------------------------------------------------------------------ facets
+function chip(label, count, on, onClick) {
+  const el = document.createElement("span");
+  el.className = "chip" + (on ? " on" : "");
+  el.innerHTML = label + (count ? `<span class="n">${count}</span>` : "");
+  el.onclick = onClick;
+  return el;
+}
+
+function renderFacets(facets) {
+  const tasks = $("f-tasks"); tasks.innerHTML = "";
+  facets.tasks.slice(0, 14).forEach((t) => {
+    tasks.appendChild(chip(t.value, t.count, state.tasks.has(t.value), () => {
+      toggle(state.tasks, t.value); renderFacets(facets); search(true);
+    }));
+  });
+  const sizes = $("f-sizes"); sizes.innerHTML = "";
+  facets.sizes.forEach((s) => {
+    sizes.appendChild(chip(s.value, s.count, state.sizes.has(s.value), () => {
+      toggle(state.sizes, s.value); renderFacets(facets); search(true);
+    }));
+  });
+  const langs = $("f-langs"); langs.innerHTML = "";
+  facets.languages.slice(0, 16).forEach((l) => {
+    langs.appendChild(chip(l.value, l.count, state.langs.has(l.value), () => {
+      toggle(state.langs, l.value); renderFacets(facets); search(true);
+    }));
+  });
+}
+
+function toggle(set, value) { set.has(value) ? set.delete(value) : set.add(value); }
+
+// ------------------------------------------------------------------ search
+function queryString(cursor) {
+  const p = new URLSearchParams();
+  if ($("q").value.trim()) p.set("q", $("q").value.trim());
+  state.tasks.forEach((v) => p.append("task", v));
+  state.langs.forEach((v) => p.append("language", v));
+  state.sizes.forEach((v) => p.append("size", v));
+  p.set("sort", $("sort").value);
+  p.set("include_gated", $("gated").checked ? "true" : "false");
+  p.set("limit", "12");
+  if (cursor) p.set("cursor", cursor);
+  return p.toString();
+}
+
+async function search(reset) {
+  const results = $("results");
+  if (reset) state.cursor = null;
+  results.innerHTML = '<div class="row"><span class="spinner"></span> <span class="hint">querying the Hub…</span></div>';
+  $("more-btn").style.display = "none";
+  try {
+    const data = await api("/api/datasets?" + queryString(reset ? null : state.cursor));
+    if (reset || !state.cursor) results.innerHTML = "";
+    state.cursor = data.next_cursor;
+    state.mode = data.mode;
+    data.items.forEach((item) => results.appendChild(card(item)));
+    $("result-count").textContent = data.items.length ? "· showing " + results.childElementCount : "";
+    $("result-mode").textContent = "source: " + data.mode + (data.elapsed_ms ? " · " + data.elapsed_ms + " ms" : "");
+    $("mode-note").textContent = data.mode === "hub" ? "" : "(offline snapshot)";
+    $("more-btn").style.display = data.next_cursor ? "inline-block" : "none";
+    if (!data.items.length) results.innerHTML = '<p class="sub">No datasets matched. Try fewer filters.</p>';
+  } catch (err) {
+    results.innerHTML = '<p class="sub">Search failed: ' + err.message + "</p>";
+  }
+}
+
+function card(item) {
+  const el = document.createElement("div");
+  el.className = "card" + (state.selected.has(item.id) ? " sel" : "");
+  const badges = [];
+  if (item.source !== "hub") badges.push('<span class="tag warn" title="metrics are approximate in offline mode">approx metrics</span>');
+  if (item.gated) badges.push('<span class="tag warn">gated</span>');
+  if (item.license) badges.push('<span class="tag">' + item.license + "</span>");
+  if (item.size_bucket) badges.push('<span class="tag">' + item.size_bucket + "</span>");
+  (item.task_categories || []).slice(0, 3).forEach((t) => badges.push('<span class="tag good">' + t + "</span>"));
+
+  el.innerHTML = `
+    <div class="top">
+      <div class="name">${escapeHtml(item.id)}</div>
+      <div class="row" style="gap:6px">
+        <a class="hint" href="${item.url}" target="_blank" rel="noopener">Hub ↗</a>
+        <button class="add-btn">${state.selected.has(item.id) ? "Remove" : "Add"}</button>
+        <button class="info-btn ghost">Details</button>
+      </div>
+    </div>
+    <div class="desc">${escapeHtml(item.description || "No description on the Hub card.")}</div>
+    <div class="meta">
+      <span class="tag">↓ ${fmt(item.downloads)}/mo</span>
+      <span class="tag">♥ ${fmt(item.likes)}</span>
+      <span class="tag">~${fmtB(item.est_tokens)} tokens</span>
+      ${item.num_examples ? '<span class="tag">' + fmt(item.num_examples) + ' rows</span>' : ""}
+      ${(item.languages || []).slice(0, 4).map((l) => '<span class="tag">' + l + "</span>").join("")}
+      ${badges.join("")}
+    </div>`;
+  el.querySelector(".add-btn").onclick = () => toggleSelect(item, el);
+  el.querySelector(".info-btn").onclick = () => showDetails(item);
+  return el;
+}
+
+async function toggleSelect(item, el) {
+  if (state.selected.has(item.id)) {
+    state.selected.delete(item.id);
+  } else {
+    let ref = null;
+    try { ref = await api("/api/datasets/" + item.id.split("/").map(encodeURIComponent).join("/") + "/ref"); }
+    catch (e) { ref = { repo_id: item.id, weight: 1, split: "train", task: "unknown", est_tokens: item.est_tokens }; }
+    state.selected.set(item.id, { weight: 1, ref });
+  }
+  el.className = "card" + (state.selected.has(item.id) ? " sel" : "");
+  el.querySelector(".add-btn").textContent = state.selected.has(item.id) ? "Remove" : "Add";
+  renderSelected();
+}
+
+function renderSelected() {
+  const box = $("selected");
+  box.innerHTML = "";
+  $("selected-empty").style.display = state.selected.size ? "none" : "block";
+  for (const [id, entry] of state.selected) {
+    const row = document.createElement("div");
+    row.className = "sel-row";
+    const ref = entry.ref || {};
+    const fields = ["text_field", "messages_field", "prompt_field", "completion_field",
+                    "chosen_field", "rejected_field"]
+      .filter((key) => ref[key])
+      .map((key) => key.replace("_field", "") + "=" + ref[key]);
+    row.innerHTML = `
+      <div><div class="rid">${escapeHtml(id)}</div>
+        <div class="hint">${ref.task || "unknown"}${fields.length ? " · " + fields.join(", ") : ""}</div>
+      </div>
+      <input type="range" min="0.1" max="4" step="0.1" value="${entry.weight}" />
+      <button class="x" title="remove">✕</button>`;
+    row.querySelector("input").oninput = (e) => { entry.weight = parseFloat(e.target.value); };
+    row.querySelector(".x").onclick = () => { state.selected.delete(id); renderSelected(); search(true); };
+    box.appendChild(row);
+  }
+}
+
+function requestBody() {
+  const datasets = [...state.selected.entries()].map(([id, e]) => {
+    const ref = e.ref || { repo_id: id };
+    return {
+      repo_id: ref.repo_id || id, split: ref.split || "train", config: ref.config || null,
+      weight: e.weight, task: ref.task || null, est_tokens: ref.est_tokens || null,
+      text_field: ref.text_field || null, prompt_field: ref.prompt_field || null,
+      completion_field: ref.completion_field || null, messages_field: ref.messages_field || null,
+      chosen_field: ref.chosen_field || null, rejected_field: ref.rejected_field || null,
+    };
+  });
+  return {
+    goal: $("goal").value,
+    method: $("method").value || null,
+    model: { preset: $("preset").value },
+    datasets,
+    hardware: { gpu: $("gpu").value, count: parseInt($("gpus").value || "1", 10) },
+    hyper: {
+      // 0 tells the planner "decide for me". Only pass a number when the user
+      // typed one, so e.g. an oversized corpus still gets clamped sensibly.
+      epochs: state.dirty.has("epochs") ? parseFloat($("epochs").value) : 0,
+      seq_len: state.dirty.has("seqlen") ? parseInt($("seqlen").value, 10) : 0,
+      learning_rate: 0,
+      micro_batch_size: 0,
+      trainer: $("trainer").value,
+      torch_compile: $("torch-compile").checked,
+      compile_mode: "reduce-overhead",
+      tf32: true,
+    },
+    project_name: $("project").value || "my-llm",
+  };
+}
+
+async function planIt() {
+  if (!state.selected.size) { alert("Add at least one dataset first."); return; }
+  const out = $("plan-out");
+  out.innerHTML = '<div class="row"><span class="spinner"></span> <span class="hint">planning…</span></div>';
+  try {
+    const data = await api("/api/plan", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody()),
+    });
+    state.plan = data;
+    out.innerHTML = renderPlan(data);
+    $("gen-btn").disabled = false;
+  } catch (err) {
+    out.innerHTML = '<p class="sub">Could not plan: ' + escapeHtml(err.message) + "</p>";
+  }
+}
+
+function renderPlan(plan) {
+  const r = plan.resource, fit = r.fits
+    ? '<span class="tag good">fits in VRAM</span>'
+    : '<span class="tag warn">does not fit</span>';
+  const warn = plan.warnings.length
+    ? '<h3>Warnings</h3><ul class="warn-list">' + plan.warnings.map((w) => "<li>" + escapeHtml(w) + "</li>").join("") + "</ul>"
+    : "";
+  const suggest = (r.suggestions || []).length ? `
+    <h3>If it does not fit</h3>
+    <table><tr><th>Change</th><th>Why</th><th>Flag</th></tr>
+    ${r.suggestions.map((s) => `<tr><td>${escapeHtml(s.action)}</td><td>${escapeHtml(s.detail)}</td><td class="mono">${escapeHtml(s.flag)}</td></tr>`).join("")}
+    </table>` : "";
+  return `
+    <div class="stats">
+      <div class="stat"><small>Method</small><b class="mono" style="font-size:15px">${plan.method}</b></div>
+      <div class="stat"><small>VRAM / GPU</small><b>${r.vram_per_gpu_gb.toFixed(1)}<span style="font-size:12px"> GiB</span></b>${fit}</div>
+      <div class="stat"><small>Steps</small><b>${plan.total_steps.toLocaleString()}</b></div>
+      <div class="stat"><small>Tokens/step</small><b>${fmtB(plan.global_batch_tokens)}</b></div>
+      <div class="stat"><small>Wall clock</small><b>${r.wall_clock_hours.toFixed(1)}<span style="font-size:12px"> h</span></b></div>
+      <div class="stat"><small>GPU-hours</small><b>${r.total_gpu_hours.toFixed(1)}</b></div>
+      <div class="stat"><small>Train tokens</small><b>${fmtB(plan.train_tokens)}</b></div>
+      <div class="stat"><small>Throughput</small><b>${Math.round(r.tokens_per_second_per_gpu).toLocaleString()}<span style="font-size:12px"> tok/s</span></b></div>
+    </div>
+    <p class="hint" style="margin-top:10px">${escapeHtml(plan.method_reason)}</p>
+    ${warn}${suggest}
+    <h3>How the estimate is derived</h3>
+    <ul class="hint" style="padding-left:18px;margin:0">${r.basis.map((b) => "<li>" + escapeHtml(b) + "</li>").join("")}</ul>
+    <h3>Mixture</h3>
+    <table><tr><th>Dataset</th><th>Split</th><th>Weight</th><th>Planned tokens</th></tr>
+    ${plan.mixture.map((m) => `<tr><td class="mono" style="font-size:12px">${escapeHtml(m.repo_id)}</td><td>${escapeHtml(m.split || "")}</td><td>${(m.weight * 100).toFixed(0)}%</td><td>${fmtB(m.planned_tokens)}</td></tr>`).join("")}
+    </table>`;
+}
+
+async function generate() {
+  const out = $("plan-out");
+  out.innerHTML = '<div class="row"><span class="spinner"></span> <span class="hint">generating project files…</span></div>';
+  try {
+    const data = await api("/api/recipes", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody()),
+    });
+    state.slug = data.slug;
+    const files = data.files.map((f) => `<span class="file" data-name="${escapeHtml(f.name)}">${escapeHtml(f.name)} <span class="hint">${f.bytes}B</span></span>`).join("");
+    out.innerHTML = `
+      <h3 style="margin-top:0">Project written</h3>
+      <p class="hint">${escapeHtml(data.project?.project_dir || "")}</p>
+      <div class="files">${files}</div>
+      <div class="row" style="margin-top:12px">
+        <a class="pill" href="/api/recipes/${encodeURIComponent(data.slug)}/download">⭳ download .zip</a>
+        <button id="show-readme">README</button>
+      </div>
+      <h3>Run it</h3>
+      <pre class="mono">${escapeHtml(data.commands.inspect)}
+${escapeHtml(data.commands.dry_run)}
+${escapeHtml(data.commands.smoke)}
+${escapeHtml(data.commands.train)}</pre>
+      <p class="hint">LLM Maker stops here: the project is a normal <code>datasets</code> +
+        <code>transformers</code> run you launch yourself.</p>`;
+    out.querySelectorAll(".file").forEach((el) => {
+      el.onclick = () => showFile(state.slug, el.dataset.name);
+    });
+    $("show-readme").onclick = () => showFile(state.slug, "README.md");
+  } catch (err) {
+    out.innerHTML = '<p class="sub">Generation failed: ' + escapeHtml(err.message) + "</p>";
+  }
+}
+
+async function showFile(slug, name) {
+  try {
+    const text = await (await fetch(`/api/recipes/${encodeURIComponent(slug)}/file/${name}`)).text();
+    openModal(`<h2 class="mono">${escapeHtml(name)}</h2><pre>${escapeHtml(text.slice(0, 40000))}</pre>`);
+  } catch (err) { openModal("<p>" + escapeHtml(String(err)) + "</p>"); }
+}
+
+async function showDetails(item) {
+  openModal('<div class="row"><span class="spinner"></span> loading…</div>');
+  let detail = item, preview = null;
+  try { detail = await api("/api/datasets/" + item.id.split("/").map(encodeURIComponent).join("/")); } catch (e) {}
+  try {
+    preview = await api("/api/datasets/" + item.id.split("/").map(encodeURIComponent).join("/") + "/preview?length=3");
+  } catch (e) { preview = { available: false, reason: String(e.message || e), rows: [] }; }
+
+  const splits = (detail.splits || []).map((s) => `<tr><td>${escapeHtml(s.config || "")}</td><td>${escapeHtml(s.split || "")}</td><td>${fmt(s.num_examples)}</td><td>${fmtB(s.num_bytes)} B</td></tr>`).join("");
+  let rowsHtml = '<p class="hint">' + escapeHtml(preview.reason || "no rows returned") + "</p>";
+  if (preview.available && preview.rows.length) {
+    const cols = preview.columns && preview.columns.length ? preview.columns : Object.keys(preview.rows[0]);
+    rowsHtml = `<table><tr>${cols.map((c) => "<th>" + escapeHtml(c) + "</th>").join("")}</tr>` +
+      preview.rows.map((row) => "<tr>" + cols.map((c) => {
+        const v = row[c];
+        const text = Array.isArray(v) ? JSON.stringify(v) : (typeof v === "object" && v !== null ? JSON.stringify(v) : String(v ?? ""));
+        return "<td>" + escapeHtml(text.slice(0, 320)) + (text.length > 320 ? "…" : "") + "</td>";
+      }).join("") + "</tr>").join("") + "</table>";
+  }
+  openModal(`
+    <div class="row" style="justify-content:space-between">
+      <h2 class="mono" style="font-size:15px">${escapeHtml(detail.id)}</h2>
+      <a class="pill" href="${detail.url}" target="_blank" rel="noopener">open on the Hub ↗</a>
+    </div>
+    <p class="sub">${escapeHtml(detail.description || "No card description available.")}</p>
+    <div class="stats">
+      <div class="stat"><small>Downloads / mo</small><b>${fmt(detail.downloads)}</b></div>
+      <div class="stat"><small>Likes</small><b>${fmt(detail.likes)}</b></div>
+      <div class="stat"><small>Est. tokens</small><b>${fmtB(detail.est_tokens)}</b></div>
+      <div class="stat"><small>Rows</small><b>${fmt(detail.num_examples)}</b></div>
+      <div class="stat"><small>Licence</small><b style="font-size:14px">${escapeHtml(detail.license || "unspecified")}</b></div>
+      <div class="stat"><small>Source</small><b style="font-size:14px">${escapeHtml(detail.source || detail.mode || "")}</b></div>
+    </div>
+    ${detail.configs && detail.configs.length ? '<h3>Configs</h3><div class="chips">' + detail.configs.map((c) => '<span class="chip">' + escapeHtml(c) + "</span>").join("") + "</div>" : ""}
+    ${splits ? '<h3>Splits</h3><table><tr><th>Config</th><th>Split</th><th>Rows</th><th>Bytes</th></tr>' + splits + "</table>" : ""}
+    <h3>Row preview <span class="hint">(via the Hub dataset viewer)</span></h3>
+    ${rowsHtml}
+    <p class="hint">${escapeHtml(detail.note || "")}</p>`);
+}
+
+function openModal(html) {
+  $("modal-content").innerHTML = html;
+  $("modal").classList.add("on");
+}
+$("modal").onclick = (e) => { if (e.target.id === "modal") $("modal").classList.remove("on"); };
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") $("modal").classList.remove("on"); });
+
+function escapeHtml(text) {
+  return String(text ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+// ------------------------------------------------------------------ wiring
+$("search-btn").onclick = () => search(true);
+$("q").addEventListener("keydown", (e) => { if (e.key === "Enter") search(true); });
+$("sort").onchange = () => search(true);
+$("gated").onchange = () => search(true);
+$("more-btn").onclick = () => search(false);
+$("clear-btn").onclick = () => {
+  state.tasks.clear(); state.langs.clear(); state.sizes.clear();
+  $("q").value = ""; api("/api/catalog").then((c) => renderFacets(c.facets)); search(true);
+};
+["epochs", "seqlen", "project", "gpus", "preset", "gpu"].forEach((id) => {
+  $(id).addEventListener("change", () => state.dirty.add(id));
+});
+$("plan-btn").onclick = planIt;
+$("gen-btn").onclick = generate;
+
+boot().catch((err) => {
+  $("hub-text").textContent = "startup error: " + err.message;
+  $("hub-dot").className = "dot off";
+});
+</script>
+</body>
+</html>

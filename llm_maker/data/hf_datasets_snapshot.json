@@ -1,0 +1,3366 @@
+{
+  "schema": 1,
+  "generated_by": "tools/build_snapshot.py",
+  "note": "Bundled offline catalog. Downloads/likes are approximate, rounded figures used only for ranking; descriptions are paraphrased. Live data comes from https://huggingface.co/api/datasets.",
+  "source": "bundled-snapshot",
+  "datasets": [
+    {
+      "id": "tatsu-lab/alpaca",
+      "author": "tatsu-lab",
+      "description": "52k instruction-following examples generated from text-davinci-003. The canonical starter set for supervised fine-tuning.",
+      "downloads": 1900000,
+      "likes": 4100,
+      "tags": [
+        "task_categories:instruction",
+        "language:en",
+        "license:cc-by-nc-4.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-nc-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "yahma/alpaca-cleaned",
+      "author": "yahma",
+      "description": "Community-cleaned Alpaca: hallucinated, malformed and instruction-less rows removed. Same schema, better signal.",
+      "downloads": 640000,
+      "likes": 1500,
+      "tags": [
+        "task_categories:instruction",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "databricks/databricks-dolly-15k",
+      "author": "databricks",
+      "description": "15k human-written instruction/response pairs with a free-form category field, covering brainstorming, closed QA, summarisation and more.",
+      "downloads": 780000,
+      "likes": 1300,
+      "tags": [
+        "task_categories:instruction",
+        "language:en",
+        "license:cc-by-sa-3.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-sa-3.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "garage-bAInd/Open-Platypus",
+      "author": "garage-bAInd",
+      "description": "25k curated STEM/reasoning instruction samples from eleven open datasets, deduplicated against common eval sets.",
+      "downloads": 210000,
+      "likes": 620,
+      "tags": [
+        "task_categories:instruction",
+        "language:en",
+        "license:other",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "teknium/OpenHermes-2.5",
+      "author": "teknium",
+      "description": "~1M mostly synthetic, heavily filtered instruction and chat samples. A workhorse mixture for modern open SFT runs.",
+      "downloads": 900000,
+      "likes": 2300,
+      "tags": [
+        "task_categories:chat",
+        "task_categories:instruction",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "chat",
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "HuggingFaceH4/ultrachat_200k",
+      "author": "HuggingFaceH4",
+      "description": "200k multi-turn conversations distilled from UltraChat; ships ready-made SFT and DPO splits.",
+      "downloads": 620000,
+      "likes": 1100,
+      "tags": [
+        "task_categories:chat",
+        "language:en",
+        "license:mit",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "chat"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "HuggingFaceH4/deita-10k-v0",
+      "author": "HuggingFaceH4",
+      "description": "High-quality multi-turn instruction data with explicit system turns, built for chat-model alignment.",
+      "downloads": 62000,
+      "likes": 260,
+      "tags": [
+        "task_categories:chat",
+        "task_categories:instruction",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "chat",
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "allenai/tulu-3-sft-mixture",
+      "author": "allenai",
+      "description": "Tulu 3's SFT mixture: a large, carefully decontaminated blend of open instruction datasets.",
+      "downloads": 210000,
+      "likes": 480,
+      "tags": [
+        "task_categories:chat",
+        "task_categories:instruction",
+        "language:en",
+        "license:odc-by",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "chat",
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "odc-by",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "Open-Orca/OpenOrca",
+      "author": "Open-Orca",
+      "description": "3.5M GPT-4/GPT-3.5-augmented FLAN-style samples. Large, cheap and popular for scale-up SFT.",
+      "downloads": 480000,
+      "likes": 700,
+      "tags": [
+        "task_categories:chat",
+        "task_categories:instruction",
+        "language:en",
+        "license:mit",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "chat",
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "OpenAssistant/oasst1",
+      "author": "OpenAssistant",
+      "description": "Human-written assistant conversations collected by volunteers in 35 languages, arranged as a message tree.",
+      "downloads": 320000,
+      "likes": 900,
+      "tags": [
+        "task_categories:chat",
+        "language:en",
+        "language:es",
+        "language:ru",
+        "language:de",
+        "license:apache-2.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "chat"
+      ],
+      "languages": [
+        "en",
+        "es",
+        "ru",
+        "de"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "OpenAssistant/oasst2",
+      "author": "OpenAssistant",
+      "description": "Extension of OASST1 with broader language coverage and additional human annotations.",
+      "downloads": 180000,
+      "likes": 470,
+      "tags": [
+        "task_categories:chat",
+        "language:en",
+        "language:es",
+        "language:ru",
+        "language:de",
+        "language:zh",
+        "license:apache-2.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "chat"
+      ],
+      "languages": [
+        "en",
+        "es",
+        "ru",
+        "de",
+        "zh"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "timdettmers/openassistant-guanaco",
+      "author": "timdettmers",
+      "description": "The OASST1 subset used in the QLoRA paper: small, clean, and the default sanity-check for a new fine-tuning setup.",
+      "downloads": 190000,
+      "likes": 520,
+      "tags": [
+        "task_categories:chat",
+        "task_categories:instruction",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "chat",
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "WizardLMTeam/WizardLM_evol_instruct_70k",
+      "author": "WizardLMTeam",
+      "description": "70k instructions produced by the Evol-Instruct loop, famous for its breadth of task types.",
+      "downloads": 260000,
+      "likes": 560,
+      "tags": [
+        "task_categories:instruction",
+        "language:en",
+        "license:other",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "lmsys/lmsys-chat-1m",
+      "author": "lmsys",
+      "description": "1M real-world conversations with 25 different models, harvested from the Chatbot Arena's public leaderboard traffic.",
+      "downloads": 240000,
+      "likes": 570,
+      "tags": [
+        "task_categories:chat",
+        "language:en",
+        "language:zh",
+        "language:ru",
+        "license:other",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "chat"
+      ],
+      "languages": [
+        "en",
+        "zh",
+        "ru"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "stingning/ultrachat",
+      "author": "stingning",
+      "description": "The original 1.4M-message UltraChat release that HuggingFaceH4/ultrachat_200k later cleaned up.",
+      "downloads": 90000,
+      "likes": 200,
+      "tags": [
+        "task_categories:chat",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "chat"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "HuggingFaceH4/stack-exchange-preferences",
+      "author": "HuggingFaceH4",
+      "description": "Questions and answers scraped from the Stack Exchange network with metadata for answer ranking.",
+      "downloads": 44000,
+      "likes": 110,
+      "tags": [
+        "task_categories:instruction",
+        "task_categories:preference",
+        "language:en",
+        "license:cc-by-sa-4.0",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "instruction",
+        "preference"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-sa-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "mlabonne/FineTome-100k",
+      "author": "mlabonne",
+      "description": "ShareGPT-formatted 100k mixture with a custom system prompt, commonly used for LoRA fine-tunes.",
+      "downloads": 120000,
+      "likes": 330,
+      "tags": [
+        "task_categories:chat",
+        "task_categories:instruction",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "chat",
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "Anthropic/hh-rlhf",
+      "author": "Anthropic",
+      "description": "Human preference data about helpfulness and harmlessness: chosen/rejected pairs for RLHF and DPO.",
+      "downloads": 260000,
+      "likes": 840,
+      "tags": [
+        "task_categories:preference",
+        "language:en",
+        "license:mit",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "preference"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "Dahoas/full-hh-rlhf",
+      "author": "Dahoas",
+      "description": "Flat-packaged version of Anthropic's HH-RLHF with prompt and response columns ready for reward modelling.",
+      "downloads": 130000,
+      "likes": 300,
+      "tags": [
+        "task_categories:preference",
+        "language:en",
+        "license:mit",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "preference"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "HuggingFaceH4/ultrafeedback_binarized",
+      "author": "HuggingFaceH4",
+      "description": "UltraFeedback cleaned and binarised into chosen/rejected pairs; the standard DPO dataset for open chat models.",
+      "downloads": 150000,
+      "likes": 350,
+      "tags": [
+        "task_categories:preference",
+        "language:en",
+        "license:mit",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "preference"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "allenai/ultrafeedback_binarized_cleaned",
+      "author": "allenai",
+      "description": "AllenAI's decontaminated UltraFeedback derivative, used to train the Tulu family.",
+      "downloads": 60000,
+      "likes": 150,
+      "tags": [
+        "task_categories:preference",
+        "language:en",
+        "license:other",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "preference"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "stanfordnlp/SHP",
+      "author": "stanfordnlp",
+      "description": "385k Reddit-sourced preference comparisons split into SHP-1 and SHP-2, with train/val/test protocols.",
+      "downloads": 70000,
+      "likes": 190,
+      "tags": [
+        "task_categories:preference",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "preference"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "Intel/orca_dpo_pairs",
+      "author": "Intel",
+      "description": "12k GPT-4-preferred versus Llama-2-rejected pairs; a common second stage after an Orca-style SFT.",
+      "downloads": 190000,
+      "likes": 340,
+      "tags": [
+        "task_categories:preference",
+        "language:en",
+        "license:other",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "preference"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "argilla/dpo-mix-7k",
+      "author": "argilla",
+      "description": "A hand-picked 7k blend of high-signal preference pairs across several open DPO datasets.",
+      "downloads": 80000,
+      "likes": 220,
+      "tags": [
+        "task_categories:preference",
+        "language:en",
+        "license:other",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "preference"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "lmsys/chatbot_arena_conversations",
+      "author": "lmsys",
+      "description": "33k arena battles with human votes: useful for reward modelling and evaluating judge models.",
+      "downloads": 90000,
+      "likes": 300,
+      "tags": [
+        "task_categories:chat",
+        "task_categories:preference",
+        "language:en",
+        "language:zh",
+        "license:cc-by-nc-4.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "chat",
+        "preference"
+      ],
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "license": "cc-by-nc-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "openbmb/UltraFeedback",
+      "author": "openbmb",
+      "description": "64k prompts each scored by GPT-4 across four fine-grained aspects, with response annotations.",
+      "downloads": 60000,
+      "likes": 180,
+      "tags": [
+        "task_categories:preference",
+        "language:en",
+        "license:mit",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "preference"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "allenai/real-toxicity-prompts",
+      "author": "allenai",
+      "description": "100k prompts labelled for toxicity by a classifier and by crowd workers; the base of the REALTOXICITYPROMPTS benchmark.",
+      "downloads": 40000,
+      "likes": 130,
+      "tags": [
+        "task_categories:preference",
+        "task_categories:safety",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "preference",
+        "safety"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "meta-math/MetaMathQA",
+      "author": "meta-math",
+      "description": "395k augmented GSM8K/MATH questions with step-by-step rationales produced by a backward-evolution pipeline.",
+      "downloads": 150000,
+      "likes": 350,
+      "tags": [
+        "task_categories:math",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "math"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "openai/gsm8k",
+      "author": "openai",
+      "description": "8.5k grade-school word problems with calculator annotations. The reference benchmark for CoT reasoning.",
+      "downloads": 700000,
+      "likes": 1600,
+      "tags": [
+        "task_categories:math",
+        "language:en",
+        "license:mit",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "math"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "microsoft/orca-math-word-problems-200k",
+      "author": "microsoft",
+      "description": "200k GPT-4 generated word problems with detailed solutions, aimed at small-model maths ability.",
+      "downloads": 120000,
+      "likes": 290,
+      "tags": [
+        "task_categories:math",
+        "language:en",
+        "license:mit",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "math"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "nvidia/OpenMathInstruct-2",
+      "author": "nvidia",
+      "description": "14M problem/solution pairs generated with Llama-3.1-405B, with tool-integrated and code-execution variants.",
+      "downloads": 70000,
+      "likes": 200,
+      "tags": [
+        "task_categories:math",
+        "language:en",
+        "license:cc-by-4.0",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "math"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "TIGER-Lab/MathInstruct",
+      "author": "TIGER-Lab",
+      "description": "263k chain-of-thought maths examples merged from nine sources including Camel, Flan and OpenAI GPT-4 outputs.",
+      "downloads": 60000,
+      "likes": 170,
+      "tags": [
+        "task_categories:math",
+        "language:en",
+        "license:mit",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "math"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "EleutherAI/hendrycks_math",
+      "author": "EleutherAI",
+      "description": "The MATH competition-problem suite (algebra, geometry, calculus, number theory) in Elementary-level splits.",
+      "downloads": 90000,
+      "likes": 300,
+      "tags": [
+        "task_categories:math",
+        "language:en",
+        "license:mit",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "math"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "deepmind/aqua_rat",
+      "author": "deepmind",
+      "description": "97k multiple-choice algebra word problems with rationale fields, widely used for evaluating reasoning chains.",
+      "downloads": 30000,
+      "likes": 90,
+      "tags": [
+        "task_categories:math",
+        "language:en",
+        "license:other",
+        "size_categories:n<1K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "n<1K"
+      ],
+      "task_categories": [
+        "math"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "bigcode/the-stack",
+      "author": "bigcode",
+      "description": "3TB of permissively licensed source code in 358 languages. The classic pretraining corpus for code LLMs.",
+      "downloads": 90000,
+      "likes": 260,
+      "tags": [
+        "task_categories:code",
+        "task_categories:pretrain",
+        "language:en",
+        "license:other",
+        "size_categories:10B<n<100B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10B<n<100B"
+      ],
+      "task_categories": [
+        "code",
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": true,
+      "source": "snapshot"
+    },
+    {
+      "id": "bigcode/the-stack-v2",
+      "author": "bigcode",
+      "description": "The Stack v2 with software-heritage metadata and repository-level context, built for long-context code training.",
+      "downloads": 40000,
+      "likes": 150,
+      "tags": [
+        "task_categories:code",
+        "task_categories:pretrain",
+        "language:en",
+        "license:other",
+        "size_categories:10B<n<100B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10B<n<100B"
+      ],
+      "task_categories": [
+        "code",
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": true,
+      "source": "snapshot"
+    },
+    {
+      "id": "bigcode/starcoderdata",
+      "author": "bigcode",
+      "description": "The curated subset of The Stack that StarCoder was trained on, including GitHub issues and Jupyter notebooks.",
+      "downloads": 25000,
+      "likes": 90,
+      "tags": [
+        "task_categories:code",
+        "task_categories:pretrain",
+        "language:en",
+        "license:other",
+        "size_categories:1B<n<10B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1B<n<10B"
+      ],
+      "task_categories": [
+        "code",
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": true,
+      "source": "snapshot"
+    },
+    {
+      "id": "codeparrot/codeparrot-clean",
+      "author": "codeparrot",
+      "description": "Cleaned Python source used in the CodeParrot project; small enough to pretrain a toy model on a single GPU.",
+      "downloads": 30000,
+      "likes": 110,
+      "tags": [
+        "task_categories:code",
+        "task_categories:pretrain",
+        "language:en",
+        "license:other",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "code",
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "sahil2801/CodeAlpaca-20k",
+      "author": "sahil2801",
+      "description": "20k code-generation instructions created self-instruct style; a cheap first SFT for coding assistants.",
+      "downloads": 220000,
+      "likes": 380,
+      "tags": [
+        "task_categories:code",
+        "task_categories:instruction",
+        "language:en",
+        "license:cc-by-4.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "code",
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "m-a-p/CodeFeedback-Filtered-Instruction",
+      "author": "m-a-p",
+      "description": "~156k instructions filtered for correctness and clarity; strong gains for small code models.",
+      "downloads": 70000,
+      "likes": 190,
+      "tags": [
+        "task_categories:code",
+        "task_categories:instruction",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "code",
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "ise-uiuc/Magicoder-OSS-Instruct-75K",
+      "author": "ise-uiuc",
+      "description": "74k instruction/response pairs generated from open-source code snippets, used to train Magicoder.",
+      "downloads": 90000,
+      "likes": 240,
+      "tags": [
+        "task_categories:code",
+        "task_categories:instruction",
+        "language:en",
+        "license:mit",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "code",
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "codeparrot/apps",
+      "author": "codeparrot",
+      "description": "10k competitive-programming problems with 131k Python solutions and unit-test-based judging.",
+      "downloads": 90000,
+      "likes": 250,
+      "tags": [
+        "task_categories:code",
+        "task_categories:eval",
+        "language:en",
+        "license:other",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "code",
+        "eval"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "DeepMind/code_contests",
+      "author": "DeepMind",
+      "description": "13k contest problems with official test cases; the source set behind CodeContests/MBPP style evaluations.",
+      "downloads": 60000,
+      "likes": 190,
+      "tags": [
+        "task_categories:code",
+        "task_categories:eval",
+        "language:en",
+        "license:cc-by-4.0",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "code",
+        "eval"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "google-research-datasets/mbpp",
+      "author": "google-research-datasets",
+      "description": "Mostly Basic Python Problems: 974 few-shot tasks with functional-level test suites.",
+      "downloads": 30000,
+      "likes": 90,
+      "tags": [
+        "task_categories:code",
+        "task_categories:eval",
+        "language:en",
+        "license:cc-by-4.0",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "code",
+        "eval"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "openai/openai_humaneval",
+      "author": "openai",
+      "description": "164 hand-written Python problems with unit tests; the most cited code-generation benchmark.",
+      "downloads": 90000,
+      "likes": 260,
+      "tags": [
+        "task_categories:code",
+        "task_categories:eval",
+        "language:en",
+        "license:mit",
+        "size_categories:n<1K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "n<1K"
+      ],
+      "task_categories": [
+        "code",
+        "eval"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "google-research-datasets/conala",
+      "author": "google-research-datasets",
+      "description": "Natural-language to Python snippets mined from Stack Overflow, useful for code-intent translation.",
+      "downloads": 25000,
+      "likes": 80,
+      "tags": [
+        "task_categories:code",
+        "task_categories:instruction",
+        "language:en",
+        "license:cc-by-4.0",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "code",
+        "instruction"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "HuggingFaceFW/fineweb",
+      "author": "HuggingFaceFW",
+      "description": "15T tokens of deduplicated CommonCrawl filtered with the FineWeb pipeline; the reference English web corpus.",
+      "downloads": 260000,
+      "likes": 780,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:odc-by",
+        "size_categories:1B<n<10B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1B<n<10B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "odc-by",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "HuggingFaceFW/fineweb-edu",
+      "author": "HuggingFaceFW",
+      "description": "FineWeb filtered by an educational-quality classifier, with 350B, 100B and 10B sample tiers.",
+      "downloads": 220000,
+      "likes": 640,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:odc-by",
+        "size_categories:1B<n<10B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1B<n<10B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "odc-by",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "HuggingFaceFW/fineweb-2",
+      "author": "HuggingFaceFW",
+      "description": "Multilingual FineWeb covering 1000+ languages with per-language quality filters — the go-to non-English web corpus.",
+      "downloads": 70000,
+      "likes": 230,
+      "tags": [
+        "task_categories:multilingual",
+        "task_categories:pretrain",
+        "language:en",
+        "language:hi",
+        "language:es",
+        "language:zh",
+        "language:ar",
+        "language:fr",
+        "license:odc-by",
+        "size_categories:10B<n<100B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10B<n<100B"
+      ],
+      "task_categories": [
+        "multilingual",
+        "pretrain"
+      ],
+      "languages": [
+        "en",
+        "hi",
+        "es",
+        "zh",
+        "ar",
+        "fr"
+      ],
+      "license": "odc-by",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "HuggingFaceTB/smollm-corpus",
+      "author": "HuggingFaceTB",
+      "description": "2.2T tokens of FineWeb-Edu plus Cosmopedia, curated for the SmolLM family of small models.",
+      "downloads": 60000,
+      "likes": 220,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:odc-by",
+        "size_categories:1B<n<10B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1B<n<10B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "odc-by",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "HuggingFaceTB/cosmopedia",
+      "author": "HuggingFaceTB",
+      "description": "30M synthetic textbooks, stories and exercises generated from web seeds, organised by age and format.",
+      "downloads": 90000,
+      "likes": 280,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:10M<n<100M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10M<n<100M"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "HuggingFaceTB/finemath",
+      "author": "HuggingFaceTB",
+      "description": "FineMath: web pages filtered for mathematical content, with 10B/3B token variants for continued pretraining.",
+      "downloads": 20000,
+      "likes": 90,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:odc-by",
+        "size_categories:100M<n<1B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100M<n<1B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "odc-by",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "open-web-math/open-web-math",
+      "author": "open-web-math",
+      "description": "14.7B tokens of maths-focused web text plus 28B tokens of arXiv/Library of Congress material.",
+      "downloads": 30000,
+      "likes": 120,
+      "tags": [
+        "task_categories:math",
+        "task_categories:pretrain",
+        "language:en",
+        "license:odc-by",
+        "size_categories:10M<n<100M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10M<n<100M"
+      ],
+      "task_categories": [
+        "math",
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "odc-by",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "allenai/c4",
+      "author": "allenai",
+      "description": "The cleaned C4 corpus with per-split shards and multilingual variants; a standard baseline pretraining set.",
+      "downloads": 300000,
+      "likes": 800,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:odc-by",
+        "size_categories:100M<n<1B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100M<n<1B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "odc-by",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "wikimedia/wikipedia",
+      "author": "wikimedia",
+      "description": "Wikimedia's own Wikipedia dumps, one config per language and snapshot date, with clean article structure.",
+      "downloads": 260000,
+      "likes": 500,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "language:hi",
+        "language:de",
+        "language:fr",
+        "language:ar",
+        "license:cc-by-sa-4.0",
+        "size_categories:10M<n<100M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10M<n<100M"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en",
+        "hi",
+        "de",
+        "fr",
+        "ar"
+      ],
+      "license": "cc-by-sa-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "EleutherAI/pile",
+      "author": "EleutherAI",
+      "description": "The Pile: an 825GB diverse English corpus of 22 subsets, from PubMed to GitHub to the Bible.",
+      "downloads": 70000,
+      "likes": 260,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:mit",
+        "size_categories:100M<n<1B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100M<n<1B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "EleutherAI/the_pile_deduplicated",
+      "author": "EleutherAI",
+      "description": "The Pile after overlap-aware deduplication, with both full and streaming-friendly layouts.",
+      "downloads": 25000,
+      "likes": 90,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:mit",
+        "size_categories:100M<n<1B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100M<n<1B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "togethercomputer/RedPajama-Data-1T",
+      "author": "togethercomputer",
+      "description": "The 1.2T-token LLaMA-1 reproduction corpus: CommonCrawl, C4, books, arXiv, StackExchange and Wikipedia.",
+      "downloads": 60000,
+      "likes": 230,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:1B<n<10B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1B<n<10B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "togethercomputer/RedPajama-Data-V2",
+      "author": "togethercomputer",
+      "description": "30T raw / 20B deduped tokens of CommonCrawl with quality signals and 100+ language configs.",
+      "downloads": 25000,
+      "likes": 110,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "language:de",
+        "language:fr",
+        "language:hi",
+        "license:apache-2.0",
+        "size_categories:10B<n<100B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10B<n<100B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en",
+        "de",
+        "fr",
+        "hi"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "cerebras/SlimPajama-627B",
+      "author": "cerebras",
+      "description": "627B tokens of deduplicated RedPajama with globally-consistent near-duplicate removal.",
+      "downloads": 40000,
+      "likes": 160,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:1B<n<10B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1B<n<10B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "DKYoon/SlimPajama-6B",
+      "author": "DKYoon",
+      "description": "A 6B-token subset of SlimPajama that actually fits on a laptop-class train run; great for smoke tests.",
+      "downloads": 40000,
+      "likes": 130,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "roneneldan/TinyStories",
+      "author": "roneneldan",
+      "description": "2M short stories written with a restricted vocabulary, showing that small models can learn grammar and coherence.",
+      "downloads": 120000,
+      "likes": 420,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:cdla-sharing-1.0",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cdla-sharing-1.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "skylion007/openwebtext",
+      "author": "skylion007",
+      "description": "The re-created WebText: 38GB of Reddit-linked pages, packaged as easily downloadable shards.",
+      "downloads": 40000,
+      "likes": 140,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:cc0-1.0",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc0-1.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "stas/openwebtext-10k",
+      "author": "stas",
+      "description": "A 10k-document slice of OpenWebText for pipeline debugging without downloading the full corpus.",
+      "downloads": 25000,
+      "likes": 90,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:cc0-1.0",
+        "size_categories:10K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<1M"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc0-1.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "tiiuae/falcon-refinedweb",
+      "author": "tiiuae",
+      "description": "The filtered and deduplicated web corpus behind Falcon, with FuzzyDedupe applied at scale.",
+      "downloads": 60000,
+      "likes": 220,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:odc-by",
+        "size_categories:1B<n<10B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1B<n<10B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "odc-by",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "oscar-corpus/OSCAR-2301",
+      "author": "oscar-corpus",
+      "description": "OSCAR 23.01: language-classified CommonCrawl text for 150+ languages, one config per language.",
+      "downloads": 40000,
+      "likes": 130,
+      "tags": [
+        "task_categories:multilingual",
+        "task_categories:pretrain",
+        "language:hi",
+        "language:en",
+        "language:fr",
+        "language:es",
+        "language:ar",
+        "license:cc-by-4.0",
+        "size_categories:1B<n<10B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1B<n<10B"
+      ],
+      "task_categories": [
+        "multilingual",
+        "pretrain"
+      ],
+      "languages": [
+        "hi",
+        "en",
+        "fr",
+        "es",
+        "ar"
+      ],
+      "license": "cc-by-4.0",
+      "gated": true,
+      "source": "snapshot"
+    },
+    {
+      "id": "uonlp/CulturaX",
+      "author": "uonlp",
+      "description": "6.3T tokens of cleaned multilingual web data for 167 languages, built from mC4 and OSCAR.",
+      "downloads": 25000,
+      "likes": 110,
+      "tags": [
+        "task_categories:multilingual",
+        "task_categories:pretrain",
+        "language:hi",
+        "language:en",
+        "language:es",
+        "language:zh",
+        "language:ar",
+        "language:ru",
+        "license:other",
+        "size_categories:10B<n<100B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10B<n<100B"
+      ],
+      "task_categories": [
+        "multilingual",
+        "pretrain"
+      ],
+      "languages": [
+        "hi",
+        "en",
+        "es",
+        "zh",
+        "ar",
+        "ru"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "nvidia/Nemotron-CC",
+      "author": "nvidia",
+      "description": "6.6T-token CommonCrawl re-extraction with synthetic rephrasing and high-quality subsets.",
+      "downloads": 20000,
+      "likes": 90,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:other",
+        "size_categories:10B<n<100B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10B<n<100B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "allenai/dolma",
+      "author": "allenai",
+      "description": "The Dolma 3T-token pretraining corpus behind OLMo, with full provenance and mixing tooling.",
+      "downloads": 15000,
+      "likes": 70,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:odc-by",
+        "size_categories:1B<n<10B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1B<n<10B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "odc-by",
+      "gated": true,
+      "source": "snapshot"
+    },
+    {
+      "id": "common-pile/common-pile-v0.1",
+      "author": "common-pile",
+      "description": "Permissively licensed text drawn from books, code, forum and academic sources for fully-open models.",
+      "downloads": 10000,
+      "likes": 60,
+      "tags": [
+        "task_categories:pretrain",
+        "language:en",
+        "license:odc-by",
+        "size_categories:100M<n<1B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100M<n<1B"
+      ],
+      "task_categories": [
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "odc-by",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "cfilt/iitb-english-hindi",
+      "author": "cfilt",
+      "description": "IIT Bombay English-Hindi parallel corpus: 1.6M sentence pairs used across Indic MT research.",
+      "downloads": 60000,
+      "likes": 190,
+      "tags": [
+        "task_categories:multilingual",
+        "task_categories:translation",
+        "language:en",
+        "language:hi",
+        "license:cc-by-nc-4.0",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "multilingual",
+        "translation"
+      ],
+      "languages": [
+        "en",
+        "hi"
+      ],
+      "license": "cc-by-nc-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "ai4bharat/IndicCorpV2",
+      "author": "ai4bharat",
+      "description": "The IndicCorp v2 monolingual corpus for 24 Indian languages, with 20B+ tokens in Hindi alone.",
+      "downloads": 25000,
+      "likes": 110,
+      "tags": [
+        "task_categories:multilingual",
+        "task_categories:pretrain",
+        "language:hi",
+        "language:bn",
+        "language:ta",
+        "language:te",
+        "language:mr",
+        "language:kn",
+        "license:cc-by-nc-4.0",
+        "size_categories:10B<n<100B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10B<n<100B"
+      ],
+      "task_categories": [
+        "multilingual",
+        "pretrain"
+      ],
+      "languages": [
+        "hi",
+        "bn",
+        "ta",
+        "te",
+        "mr",
+        "kn"
+      ],
+      "license": "cc-by-nc-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "ai4bharat/IndicGLUE",
+      "author": "ai4bharat",
+      "description": "Natural-language-understanding benchmark suite for Indic languages, modelled on GLUE.",
+      "downloads": 20000,
+      "likes": 80,
+      "tags": [
+        "task_categories:classification",
+        "task_categories:multilingual",
+        "language:hi",
+        "language:bn",
+        "language:ta",
+        "language:te",
+        "language:gu",
+        "language:mr",
+        "license:cc-by-nc-4.0",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "classification",
+        "multilingual"
+      ],
+      "languages": [
+        "hi",
+        "bn",
+        "ta",
+        "te",
+        "gu",
+        "mr"
+      ],
+      "license": "cc-by-nc-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "facebook/flores",
+      "author": "facebook",
+      "description": "FLORES-200 evaluation sentences for 200 languages, the standard low-resource translation benchmark.",
+      "downloads": 90000,
+      "likes": 260,
+      "tags": [
+        "task_categories:multilingual",
+        "task_categories:translation",
+        "language:hi",
+        "language:en",
+        "language:bn",
+        "language:ta",
+        "language:ar",
+        "language:sw",
+        "license:cc-by-sa-4.0",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "multilingual",
+        "translation"
+      ],
+      "languages": [
+        "hi",
+        "en",
+        "bn",
+        "ta",
+        "ar",
+        "sw"
+      ],
+      "license": "cc-by-sa-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "Helsinki-NLP/opus-100",
+      "author": "Helsinki-NLP",
+      "description": "1M parallel sentences per language pair mined from OPUS, across 100 languages and 2200 directions.",
+      "downloads": 40000,
+      "likes": 140,
+      "tags": [
+        "task_categories:multilingual",
+        "task_categories:translation",
+        "language:hi",
+        "language:en",
+        "language:fr",
+        "language:de",
+        "language:es",
+        "language:ru",
+        "license:other",
+        "size_categories:100M<n<1B",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100M<n<1B"
+      ],
+      "task_categories": [
+        "multilingual",
+        "translation"
+      ],
+      "languages": [
+        "hi",
+        "en",
+        "fr",
+        "de",
+        "es",
+        "ru"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "wmt16",
+      "author": null,
+      "description": "The classic WMT 2016 news translation task data, still the default for machine-translation baselines.",
+      "downloads": 60000,
+      "likes": 190,
+      "tags": [
+        "task_categories:multilingual",
+        "task_categories:translation",
+        "language:en",
+        "language:de",
+        "language:ro",
+        "language:fi",
+        "language:tr",
+        "license:other",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "multilingual",
+        "translation"
+      ],
+      "languages": [
+        "en",
+        "de",
+        "ro",
+        "fi",
+        "tr"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "wmt/wmt19",
+      "author": "wmt",
+      "description": "WMT 2019 news task with additional language pairs and news-commentary test sets.",
+      "downloads": 25000,
+      "likes": 90,
+      "tags": [
+        "task_categories:multilingual",
+        "task_categories:translation",
+        "language:en",
+        "language:de",
+        "language:ru",
+        "language:cs",
+        "language:fi",
+        "license:other",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "multilingual",
+        "translation"
+      ],
+      "languages": [
+        "en",
+        "de",
+        "ru",
+        "cs",
+        "fi"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "nyu-mll/glue",
+      "author": "nyu-mll",
+      "description": "The GLUE benchmark bundle: CoLA, SST-2, MRPC, STS-B, QQP, MNLI, QNLI, RTE and WNLI in one repo.",
+      "downloads": 300000,
+      "likes": 650,
+      "tags": [
+        "task_categories:classification",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "classification"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "nyu-mll/super_glue",
+      "author": "nyu-mll",
+      "description": "The harder SuperGLUE suite plus diagnostic sets, with configs for BoolQ, CB, COPA, MultiRC and more.",
+      "downloads": 90000,
+      "likes": 260,
+      "tags": [
+        "task_categories:classification",
+        "language:en",
+        "language:hi",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "classification"
+      ],
+      "languages": [
+        "en",
+        "hi"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "imdb",
+      "author": null,
+      "description": "50k movie reviews labelled positive or negative; the standard binary sentiment warm-up.",
+      "downloads": 400000,
+      "likes": 1100,
+      "tags": [
+        "task_categories:classification",
+        "language:en",
+        "license:other",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "classification"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "fancyzhx/ag_news",
+      "author": "fancyzhx",
+      "description": "120k news articles in four topic classes, used in every text-classification tutorial ever written.",
+      "downloads": 180000,
+      "likes": 420,
+      "tags": [
+        "task_categories:classification",
+        "language:en",
+        "license:cc-by-4.0",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "classification"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "fancyzhx/amazon_polarity",
+      "author": "fancyzhx",
+      "description": "3.6M Amazon reviews with polarity labels plus titles; a solid scaling dataset for classifiers.",
+      "downloads": 90000,
+      "likes": 260,
+      "tags": [
+        "task_categories:classification",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "classification"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "fancyzhx/yelp_review_full",
+      "author": "fancyzhx",
+      "description": "700k Yelp reviews with five-star labels, often used for ordinal or multi-class sentiment work.",
+      "downloads": 60000,
+      "likes": 190,
+      "tags": [
+        "task_categories:classification",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "classification"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "mteb/amazon_polarity",
+      "author": "mteb",
+      "description": "MTEB-packaged Amazon polarity data with a fixed test split for reproducible embedding evaluation.",
+      "downloads": 10000,
+      "likes": 60,
+      "tags": [
+        "task_categories:classification",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "classification"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "stanfordnlp/sentiment140",
+      "author": "stanfordnlp",
+      "description": "1.6M tweets labelled by emoticon, the classic noisy social-media sentiment corpus.",
+      "downloads": 40000,
+      "likes": 140,
+      "tags": [
+        "task_categories:classification",
+        "language:en",
+        "license:other",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "classification"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "abisee/cnn_dailymail",
+      "author": "abisee",
+      "description": "300k news articles paired with human-written highlights; the canonical abstractive summarisation set.",
+      "downloads": 260000,
+      "likes": 640,
+      "tags": [
+        "task_categories:summarization",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "summarization"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "EdinburghNLP/xsum",
+      "author": "EdinburghNLP",
+      "description": "226k BBC articles with single-sentence summaries, deliberately difficult to copy from the source.",
+      "downloads": 220000,
+      "likes": 560,
+      "tags": [
+        "task_categories:summarization",
+        "language:en",
+        "license:cc-by-4.0",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "summarization"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "samsum",
+      "author": null,
+      "description": "16k messenger-style dialogues with short human summaries; great for dialogue summarisation.",
+      "downloads": 190000,
+      "likes": 460,
+      "tags": [
+        "task_categories:summarization",
+        "language:en",
+        "license:cc-by-nc-nd-4.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "summarization"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-nc-nd-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "GEM/xlsum",
+      "author": "GEM",
+      "description": "GEM's XL-Sum: BBC articles and summaries in 44 languages including 11 Indic ones.",
+      "downloads": 40000,
+      "likes": 130,
+      "tags": [
+        "task_categories:multilingual",
+        "task_categories:summarization",
+        "language:en",
+        "language:hi",
+        "language:ar",
+        "language:fr",
+        "language:es",
+        "license:cc-by-4.0",
+        "size_categories:1M<n<10M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1M<n<10M"
+      ],
+      "task_categories": [
+        "multilingual",
+        "summarization"
+      ],
+      "languages": [
+        "en",
+        "hi",
+        "ar",
+        "fr",
+        "es"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "ccdv/govreport-summarization",
+      "author": "ccdv",
+      "description": "Long US government reports with section summaries; useful for long-context summarisation.",
+      "downloads": 30000,
+      "likes": 100,
+      "tags": [
+        "task_categories:summarization",
+        "language:en",
+        "license:other",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "summarization"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "billsum",
+      "author": null,
+      "description": "US Congressional bills paired with Congressional Research Service summaries, a legal-domain summarisation set.",
+      "downloads": 30000,
+      "likes": 100,
+      "tags": [
+        "task_categories:summarization",
+        "language:en",
+        "license:cc0-1.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "summarization"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc0-1.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "rajpurkar/squad",
+      "author": "rajpurkar",
+      "description": "100k crowd-written questions over Wikipedia paragraphs; the reference extractive reading-comprehension set.",
+      "downloads": 300000,
+      "likes": 800,
+      "tags": [
+        "task_categories:qa",
+        "language:en",
+        "license:cc-by-sa-4.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "qa"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-sa-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "rajpurkar/squad_v2",
+      "author": "rajpurkar",
+      "description": "SQuAD 2.0 adds 50k unanswerable questions so models must learn when to abstain.",
+      "downloads": 120000,
+      "likes": 350,
+      "tags": [
+        "task_categories:qa",
+        "language:en",
+        "license:cc-by-sa-4.0",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "qa"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-sa-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "natural_questions",
+      "author": null,
+      "description": "Real Google search questions with Wikipedia answer annotations and long/short answer spans.",
+      "downloads": 70000,
+      "likes": 220,
+      "tags": [
+        "task_categories:qa",
+        "task_categories:rag",
+        "language:en",
+        "license:cc-by-sa-3.0",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "qa",
+        "rag"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-sa-3.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "microsoft/ms_marco",
+      "author": "microsoft",
+      "description": "1M passage-ranked queries from Bing; a standard retrieval and passage-re-ranking benchmark.",
+      "downloads": 40000,
+      "likes": 140,
+      "tags": [
+        "task_categories:qa",
+        "task_categories:rag",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "qa",
+        "rag"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "BeIR/scifact",
+      "author": "BeIR",
+      "description": "Scientific claim verification with abstracts as the corpus; one of the BEIR zero-shot retrieval tasks.",
+      "downloads": 25000,
+      "likes": 90,
+      "tags": [
+        "task_categories:eval",
+        "task_categories:rag",
+        "language:en",
+        "license:cc-by-4.0",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "eval",
+        "rag"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "BeIR/nq",
+      "author": "BeIR",
+      "description": "Natural Questions re-packaged for retrieval evaluation, with a 2.6M-passage Wikipedia corpus.",
+      "downloads": 20000,
+      "likes": 80,
+      "tags": [
+        "task_categories:eval",
+        "task_categories:rag",
+        "language:en",
+        "license:cc-by-4.0",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "eval",
+        "rag"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "hotpotqa/hotpot_qa",
+      "author": "hotpotqa",
+      "description": "113k multi-hop questions that require reasoning across two or more Wikipedia articles.",
+      "downloads": 60000,
+      "likes": 190,
+      "tags": [
+        "task_categories:qa",
+        "task_categories:rag",
+        "language:en",
+        "license:cc-by-sa-4.0",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "qa",
+        "rag"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-sa-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "truthful_qa",
+      "author": null,
+      "description": "817 adversarial questions probing truthfulness, with correct and incorrect reference answers.",
+      "downloads": 90000,
+      "likes": 280,
+      "tags": [
+        "task_categories:eval",
+        "task_categories:qa",
+        "task_categories:safety",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:n<1K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "n<1K"
+      ],
+      "task_categories": [
+        "eval",
+        "qa",
+        "safety"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "hails/mmlu_no_train",
+      "author": "hails",
+      "description": "MMLU under the canonical train-free format: 14k multiple-choice questions across 57 subjects.",
+      "downloads": 40000,
+      "likes": 140,
+      "tags": [
+        "task_categories:eval",
+        "language:en",
+        "license:mit",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "eval"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "cais/mmlu",
+      "author": "cais",
+      "description": "MMLU with auxiliary train/dev/test splits, handy when you want few-shot exemplars.",
+      "downloads": 90000,
+      "likes": 280,
+      "tags": [
+        "task_categories:eval",
+        "language:en",
+        "license:mit",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "eval"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "allenai/ai2_arc",
+      "author": "allenai",
+      "description": "7.8k science exam questions split into Easy and Challenge sets, with answer keys.",
+      "downloads": 60000,
+      "likes": 190,
+      "tags": [
+        "task_categories:eval",
+        "language:en",
+        "license:cc-by-sa-4.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "eval"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-sa-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "Rowan/hellaswag",
+      "author": "Rowan",
+      "description": "40k multiple-choice sentence-completion items derived from ActivityNet captions — a common-sense staple.",
+      "downloads": 60000,
+      "likes": 190,
+      "tags": [
+        "task_categories:eval",
+        "language:en",
+        "license:mit",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "eval"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "google/boolq",
+      "author": "google",
+      "description": "12k yes/no questions about Wikipedia passages, testing inference over a single document.",
+      "downloads": 60000,
+      "likes": 190,
+      "tags": [
+        "task_categories:classification",
+        "task_categories:eval",
+        "language:en",
+        "license:cc-by-sa-3.0",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "classification",
+        "eval"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-sa-3.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "truthfulqa/truthful_qa",
+      "author": "truthfulqa",
+      "description": "Earlier namespace of the TruthfulQA generation and multiple-choice tasks.",
+      "downloads": 30000,
+      "likes": 110,
+      "tags": [
+        "task_categories:eval",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:n<1K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "n<1K"
+      ],
+      "task_categories": [
+        "eval"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "openai/grade-school-math",
+      "author": "openai",
+      "description": "Older mirror of GSM8K with slight formatting differences, still referenced by early CoT papers.",
+      "downloads": 30000,
+      "likes": 110,
+      "tags": [
+        "task_categories:eval",
+        "task_categories:math",
+        "language:en",
+        "license:mit",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "eval",
+        "math"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "epfl-llm/guidelines",
+      "author": "epfl-llm",
+      "description": "Clinical practice guidelines with instruction-formatted QA, built for the Meditron project.",
+      "downloads": 40000,
+      "likes": 140,
+      "tags": [
+        "task_categories:domain",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "domain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "apache-2.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "medalpaca/medical_meadow_medical_flashcards",
+      "author": "medalpaca",
+      "description": "33k medical flashcard question/answer pairs; a compact dataset for medical QA fine-tuning.",
+      "downloads": 40000,
+      "likes": 140,
+      "tags": [
+        "task_categories:domain",
+        "language:en",
+        "license:other",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "domain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "qiaojin/PubMedQA",
+      "author": "qiaojin",
+      "description": "273k biomedical research questions with yes/no/maybe labels and long-context evidence passages.",
+      "downloads": 40000,
+      "likes": 140,
+      "tags": [
+        "task_categories:domain",
+        "task_categories:qa",
+        "language:en",
+        "license:mit",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "domain",
+        "qa"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "mit",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "pile-of-law/pile-of-law",
+      "author": "pile-of-law",
+      "description": "256GB of legal and administrative text from US, EU, Canadian, Indian and other jurisdictions.",
+      "downloads": 10000,
+      "likes": 70,
+      "tags": [
+        "task_categories:domain",
+        "task_categories:pretrain",
+        "language:en",
+        "license:other",
+        "size_categories:100B<n<1T",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100B<n<1T"
+      ],
+      "task_categories": [
+        "domain",
+        "pretrain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": true,
+      "source": "snapshot"
+    },
+    {
+      "id": "lex_glue",
+      "author": null,
+      "description": "A GLUE-style benchmark of eight legal text-classification tasks from EU and US case law.",
+      "downloads": 10000,
+      "likes": 60,
+      "tags": [
+        "task_categories:classification",
+        "task_categories:domain",
+        "language:en",
+        "license:cc-by-4.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "classification",
+        "domain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "financial_phrasebank",
+      "author": null,
+      "description": "4.8k financial news sentences annotated by experts for sentiment, with several agreement splits.",
+      "downloads": 90000,
+      "likes": 260,
+      "tags": [
+        "task_categories:classification",
+        "task_categories:domain",
+        "language:en",
+        "license:cc-by-nc-sa-3.0",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "classification",
+        "domain"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "cc-by-nc-sa-3.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "ai4bharat/IndicSentiment",
+      "author": "ai4bharat",
+      "description": "Sentiment-labelled reviews and social posts in 10 Indian languages, from the Bhasha-Abhijnaanam project.",
+      "downloads": 10000,
+      "likes": 60,
+      "tags": [
+        "task_categories:domain",
+        "task_categories:multilingual",
+        "language:hi",
+        "language:bn",
+        "language:ta",
+        "language:mr",
+        "language:gu",
+        "license:cc-by-nc-4.0",
+        "size_categories:10K<n<100K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10K<n<100K"
+      ],
+      "task_categories": [
+        "domain",
+        "multilingual"
+      ],
+      "languages": [
+        "hi",
+        "bn",
+        "ta",
+        "mr",
+        "gu"
+      ],
+      "license": "cc-by-nc-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "covid19-radiography-database",
+      "author": null,
+      "description": "COVID-19 chest X-ray images with metadata; included as a reminder that this catalog spans modalities.",
+      "downloads": 10000,
+      "likes": 50,
+      "tags": [
+        "task_categories:domain",
+        "task_categories:vision",
+        "language:en",
+        "license:other",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "domain",
+        "vision"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "mozilla-foundation/common_voice_16_1",
+      "author": "mozilla-foundation",
+      "description": "Crowdsourced read speech in 100+ languages with validated train/dev/test splits, for ASR and speech LLMs.",
+      "downloads": 60000,
+      "likes": 190,
+      "tags": [
+        "task_categories:audio",
+        "language:hi",
+        "language:en",
+        "language:ta",
+        "language:fr",
+        "language:de",
+        "license:cc0-1.0",
+        "size_categories:10M<n<100M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "10M<n<100M"
+      ],
+      "task_categories": [
+        "audio"
+      ],
+      "languages": [
+        "hi",
+        "en",
+        "ta",
+        "fr",
+        "de"
+      ],
+      "license": "cc0-1.0",
+      "gated": true,
+      "source": "snapshot"
+    },
+    {
+      "id": "google/fleurs",
+      "author": "google",
+      "description": "Few-shot learning evaluation of universal representations of speech: 102 languages, read Wikipedia sentences.",
+      "downloads": 70000,
+      "likes": 220,
+      "tags": [
+        "task_categories:audio",
+        "task_categories:multilingual",
+        "language:hi",
+        "language:en",
+        "language:bn",
+        "language:ta",
+        "language:sw",
+        "license:cc-by-4.0",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "audio",
+        "multilingual"
+      ],
+      "languages": [
+        "hi",
+        "en",
+        "bn",
+        "ta",
+        "sw"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "PolyAI/minds14",
+      "author": "PolyAI",
+      "description": "Multilingual spoken intent classification from banking call recordings.",
+      "downloads": 25000,
+      "likes": 80,
+      "tags": [
+        "task_categories:audio",
+        "task_categories:classification",
+        "language:en",
+        "language:de",
+        "language:fr",
+        "language:hi",
+        "license:cc-by-4.0",
+        "size_categories:1K<n<10K",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "1K<n<10K"
+      ],
+      "task_categories": [
+        "audio",
+        "classification"
+      ],
+      "languages": [
+        "en",
+        "de",
+        "fr",
+        "hi"
+      ],
+      "license": "cc-by-4.0",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "liuhaotian/LLaVA-Instruct-150K",
+      "author": "liuhaotian",
+      "description": "158k GPT-generated conversation, detail and complex-reasoning instructions paired with COCO images.",
+      "downloads": 90000,
+      "likes": 260,
+      "tags": [
+        "task_categories:instruction",
+        "task_categories:vision",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "instruction",
+        "vision"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    },
+    {
+      "id": "HuggingFaceM4/VQAv2",
+      "author": "HuggingFaceM4",
+      "description": "1.1M open-ended visual questions about COCO images with ten human answers each.",
+      "downloads": 25000,
+      "likes": 90,
+      "tags": [
+        "task_categories:qa",
+        "task_categories:vision",
+        "language:en",
+        "license:other",
+        "size_categories:100K<n<1M",
+        "llm-maker:catalog"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "qa",
+        "vision"
+      ],
+      "languages": [
+        "en"
+      ],
+      "license": "other",
+      "gated": false,
+      "source": "snapshot"
+    }
+  ]
+}

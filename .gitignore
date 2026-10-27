@@ -1,0 +1,15 @@
+# Repository-local artefacts. Generated projects are outputs, not source.
+generated/
+runs/
+merged/
+out/
+wandb/
+mlruns/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+build/
+dist/
+.cache/
